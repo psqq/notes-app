@@ -1,7 +1,9 @@
 import Note from "./Note";
 
 export default interface NotesStorage {
-    add(note: Note): void;
+    save(note: Note): void;
 
     getAll(): Note[];
+
+    getNoteById(id: string): Note|null;
 }

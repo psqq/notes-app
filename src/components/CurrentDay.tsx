@@ -1,16 +1,12 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import Modal from 'react-modal';
-import useState2 from "../hooks/useState2";
 import useModalState from "../hooks/useModalState";
+import useNewNote from "../hooks/useNewNote";
 
 const CurrentDay: React.FC = () => {
     const newNoteModal = useModalState(false);
-    const noteText = useState2('');
-
-    function saveNote() {
-
-    }
+    const newNote = useNewNote();
 
     return (
         <>
@@ -26,12 +22,16 @@ const CurrentDay: React.FC = () => {
             >
                 <h2>Новая запись</h2>
                 <textarea
-                    value={noteText.value}
-                    onChange={e => noteText.setValue(e.target.value)}
+                    value={newNote.note.text}
+                    onChange={e => newNote.save()}
                 />
                 <br/>
-                <button onClick={saveNote}>Сохранить</button>
-                <button onClick={() => setIsOpen(false)}>Закрыть</button>
+                <button onClick={() => newNote.save()}>Сохранить</button>
+                <button
+                    onClick={() => newNoteModal.close()}
+                >
+                    Закрыть
+                </button>
             </Modal>
         </>
     );

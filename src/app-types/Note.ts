@@ -23,7 +23,3 @@ export function createNote(
         updatedAt,
     };
 }
-
-export function saveNoteToLS(note: Note) {
-    const notes = localStorage.
-}
